@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-100">
+    <p class="text-7xl font-bold text-blue-700 mt-5 flex justify-center">
+        Cadastro
+    </p>
+ <main class="flex justify-center gap-5">
+    <section class="bg-white shadow-2xl mt-25 rounded-4xl flex w-80 justify-center">
+        <div>
+            <form action="" class="flex flex-col mt-5 mb-5 text-base font-medium text-blue-900">
+                Nome da empresa:
+                <input class="bg-slate-50 shadow-xl outline-1 outline-gray-200 rounded-md" type="text" name="nome_emp" id="">
+                E-mail comercial:
+                <input class="bg-slate-50 shadow-xl outline-1 outline-gray-200 rounded-md" type="email" name="email" id="">
+                Cnpj:
+                <input class="bg-slate-50 shadow-xl outline-1 outline-gray-200 rounded-md" type="number" name="cnpj" id="">
+                Cep:
+                <input class="bg-slate-50 shadow-xl outline-1 outline-gray-200 rounded-md" type="number" name="cep" id="">
+            </form>
+        </div>
+    </section>
+
+    <section class="bg-white shadow-2xl mt-25 rounded-4xl flex w-80 justify-center">
+        <div>
+            <form action="" class="flex flex-col mt-5 mb-5 text-base font-medium text-blue-900">
+                Seu nome:
+                <input class="bg-slate-50 shadow-xl outline-1 outline-gray-200 rounded-md" type="text" name="nome" id="">
+                E-mail pessoal:
+                <input class="bg-slate-50 shadow-xl outline-1 outline-gray-200 rounded-md" type="email" name="email_p" id="">
+                CPF:
+                <input class="bg-slate-50 shadow-xl outline-1 outline-gray-200 rounded-md" type="number" name="cpf" id="">
+                Telefone:
+                <input class="bg-slate-50 shadow-xl outline-1 outline-gray-200 rounded-md" type="number" name="tel" id="">
+            </form>
+        </div>
+    </section>
+ </main>  
+ <section class="bg-white shadow-2xl mt-5 mx-auto rounded-4xl justify-center flex w-80">
+        <div>
+            <form action="" class="flex flex-col mt-5 mb-5 text-base font-medium text-blue-900">
+                Senha:
+                <input class="bg-slate-50 shadow-xl outline-1 outline-gray-200 rounded-md" type="password" name="senha" id="">
+                Confirmar senha:
+                <input class="bg-slate-50 shadow-xl outline-1 outline-gray-200 rounded-md" type="password" name="conf_senha" id="">
+            </form>
+            <a href="../pages/login.html">
+            <button class="shadow-2xl bg-blue-500 rounded-lg text-white font-bold text-base mb-3 hover:bg-blue-900 hover:scale-110 transition delay-150">Confirmar</button>
+            </a>
+        </div>
+    </section> 
+</body>
+</html>
