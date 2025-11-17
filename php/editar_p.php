@@ -5,7 +5,7 @@ include('conect.php');
 $id_usuario = $_SESSION['usuario_id'];
 $usuario = [];
 
-$sql = "SELECT nome, email, telefone, criado_em, nome_comercio, descricao FROM usuarios WHERE id_usuario = ?";
+$sql = "SELECT nome, email, telefone, criado_em, nome_comercio, descricao, foto FROM usuarios WHERE id_usuario = ?";
 $stmt = $conexao->prepare($sql);
 $stmt->bind_param("s", $id_usuario);
 $stmt->execute();
@@ -24,7 +24,7 @@ $usuario = $resultado->fetch_assoc();
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body class="bg-slate-100 flex justify-center">
-    <form enctype="multipart/form-data class="bg-white shadow-2xl rounded-xl w-150 h-150 mt-25 flex flex-col gap-5 justify-center" method="post" action="update_p.php">
+    <form enctype="multipart/form-data" class="bg-white shadow-2xl rounded-xl w-150 h-150 mt-25 flex flex-col gap-5 justify-center" method="post" action="update_p.php">
         <h1 class="font-bold text-blue-700 text-4xl flex justify-center">
             Editar perfil
         </h1>

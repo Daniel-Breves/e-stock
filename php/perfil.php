@@ -5,7 +5,7 @@ include('conect.php');
 $id_usuario = $_SESSION['usuario_id'];
 $usuario = [];
 
-$sql = "SELECT nome, email, telefone, criado_em, nome_comercio, descricao FROM usuarios WHERE id_usuario = ?";
+$sql = "SELECT nome, email, telefone, criado_em, nome_comercio, descricao, foto FROM usuarios WHERE id_usuario = ?";
 $stmt = $conexao->prepare($sql);
 $stmt->bind_param("s", $id_usuario);
 $stmt->execute();
@@ -55,10 +55,10 @@ $usuario = $resultado->fetch_assoc();
     <main class="ml-64 p-6">
       <section class=" flex flex-row gap-5">
         <div class="flex flex-col items-center">
-          <img
-            src="../images/default.jpeg"
-            class="w-40 h-40 rounded-full bg-gray-700 shadow-md mb-5"
-          />
+  <img
+  src="<?php echo '/e-stock/' . ($usuario['foto'] ?? 'images/default.jpeg'); ?>"
+  class="w-40 h-40 rounded-full bg-gray-700 shadow-md mb-5"
+/>
         </div>
         <h1 class="text-5xl text-slate-900 font-bold mt-15"><?php echo htmlspecialchars($usuario['nome']); ?></h1>
         <a href="dados.php">

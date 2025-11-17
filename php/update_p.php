@@ -2,7 +2,7 @@
 require_once 'shield.php';
 include('conect.php');
 
-session_start();
+
 $id_usuario = $_SESSION['usuario_id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,16 +16,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Dados incompletos.");
     }
 
+    // Caminho padrão da imagem
+    $caminhoFoto = null;
+
+    // Se o usuário enviou uma imagem
+    if ($arquivo['error'] === UPLOAD_ERR_OK) {
+        $nomeTemporario = $arquivo['tmp_name'];
+        $nomeOriginal = basename($arquivo['name']);
+        $extensao = pathinfo($nomeOriginal, PATHINFO_EXTENSION);
+
+        // Gera nome único
+        $novoNome = uniqid('foto_', true) . '.' . $extensao;
+        $destino = __DIR__ . '/../uploads/' . $novoNome;
+
+        // Move o arquivo
+        if (move_uploaded_file($nomeTemporario, $destino)) {
+        $caminhoFoto = 'uploads/' . $novoNome;
+        } else {
+            die("Erro ao mover o arquivo.");
+        }
+    }
+
+
     // Query com WHERE e placeholders
+if ($caminhoFoto) {
     $sql = "UPDATE usuarios SET foto = ?, nome_comercio = ?, descricao = ? WHERE id_usuario = ?";
     $stmt = $conexao->prepare($sql);
-
     if (!$stmt) {
         die("Erro ao preparar a query: " . $conexao->error);
     }
-
-    // Bind dos parâmetros
-    $stmt->bind_param("ssss", $arquivo,  $nc, $desc, $id_usuario);
+    $stmt->bind_param("ssss", $caminhoFoto, $nc, $desc, $id_usuario);
+} else {
+    $sql = "UPDATE usuarios SET nome_comercio = ?, descricao = ? WHERE id_usuario = ?";
+    $stmt = $conexao->prepare($sql);
+    if (!$stmt) {
+        die("Erro ao preparar a query: " . $conexao->error);
+    }
+    $stmt->bind_param("sss", $nc, $desc, $id_usuario);
+}
 
     // Executa a query preparada
     if ($stmt->execute()) {
