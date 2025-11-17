@@ -19,7 +19,7 @@ $usuario = $resultado->fetch_assoc();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perfil</title>
+    <title><?php echo htmlspecialchars($usuario['nome']); ?></title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body class="bg-slate-100 flex">
@@ -56,14 +56,8 @@ $usuario = $resultado->fetch_assoc();
       <section class=" flex flex-row gap-5">
         <div class="flex flex-col items-center">
           <img
-            src="imagens/avatar-default.png"
+            src="../images/default.jpeg"
             class="w-40 h-40 rounded-full bg-gray-700 shadow-md mb-5"
-          />
-
-          <input
-            type="file"
-            class="mt-3 bg-white rounded p-2 shadow"
-            accept="image/*"
           />
         </div>
         <h1 class="text-5xl text-slate-900 font-bold mt-15"><?php echo htmlspecialchars($usuario['nome']); ?></h1>

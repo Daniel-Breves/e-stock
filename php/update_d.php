@@ -6,18 +6,17 @@ session_start();
 $id_usuario = $_SESSION['usuario_id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nc = $_POST["nomec"];
-    $desc = $_POST["dc"];
-    $arquivo = $_FILES['foto'];
-
+    $em = $_POST["email"];
+    $tel = $_POST["tel"];
+    $cep = $_POST["cep"];
 
     // Verifique se os dados estão preenchidos
-    if (empty($id_usuario) || empty($nc) || empty($desc)) {
+    if (empty($id_usuario) || empty($em) || empty($tel) || empty($cep)) {
         die("Dados incompletos.");
     }
 
     // Query com WHERE e placeholders
-    $sql = "UPDATE usuarios SET foto = ?, nome_comercio = ?, descricao = ? WHERE id_usuario = ?";
+    $sql = "UPDATE usuarios SET email = ?, telefone = ?, cep = ? WHERE id_usuario = ?";
     $stmt = $conexao->prepare($sql);
 
     if (!$stmt) {
@@ -25,18 +24,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Bind dos parâmetros
-    $stmt->bind_param("ssss", $arquivo,  $nc, $desc, $id_usuario);
+    $stmt->bind_param("ssss", $em, $tel, $cep, $id_usuario);
 
     // Executa a query preparada
     if ($stmt->execute()) {
         echo "<script>
-            alert('Perfil atualizado com sucesso!');
+            alert('Dados atualizados com sucesso!');
             window.location.href = 'perfil.php';
         </script>";
     } else {
         echo "<script>
-            alert('Erro ao atualizar perfil: " . addslashes($stmt->error) . "');
-            window.location.href = 'editar_p.php';
+            alert('Erro ao atualizar dados: " . addslashes($stmt->error) . "');
+            window.location.href = 'dados.php';
         </script>";
     }
 
@@ -44,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "<script>
         alert('Requisição inválida.');
-        window.location.href = 'editar_p.php';
+        window.location.href = 'dados.php';
     </script>";
 }
 ?>

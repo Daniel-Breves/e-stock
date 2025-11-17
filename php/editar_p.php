@@ -24,10 +24,19 @@ $usuario = $resultado->fetch_assoc();
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body class="bg-slate-100 flex justify-center">
-    <form class="bg-white shadow-2xl rounded-xl w-150 h-150 mt-25 flex flex-col gap-5 justify-center" method="post" action="update_p.php">
+    <form enctype="multipart/form-data class="bg-white shadow-2xl rounded-xl w-150 h-150 mt-25 flex flex-col gap-5 justify-center" method="post" action="update_p.php">
         <h1 class="font-bold text-blue-700 text-4xl flex justify-center">
             Editar perfil
         </h1>
+        <div class="ml-5 mr-5">
+          <label class="ml-5 mr-5 text-lg font-semibold text-blue-950" for="foto">Foto:</label>
+          <input
+            type="file"
+            name="foto"
+            class="mt-3 bg-white rounded p-2 shadow"
+            accept="image/*"
+          />
+        </div>
         <div class="ml-5 mr-5">
     <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Nome do comercio:</label><br>
     <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="text" name="nomec" value="<?php echo htmlspecialchars($usuario['nome_comercio']); ?>" required><br><br>
