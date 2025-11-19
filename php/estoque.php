@@ -33,8 +33,8 @@ $estoque = $estoques->fetch_assoc();
    <p class="text-xl font-bold ml-5 mt-5">Menu</p>
    <ul class="ml-5 mt-10 mr-5 flex flex-col gap-5">
     <li><a class="block hover:bg-blue-800 rounded p-2" href="#">Configurações</a></li>
-    <li><a class="block hover:bg-blue-800 rounded p-2" href="#">Perfil</a></li>
-    <li><a class="block hover:bg-blue-800 rounded p-2" href="../dashboard.html">Dashboard</a></li>
+    <li><a class="block hover:bg-blue-800 rounded p-2" href="perfil.php">Perfil</a></li>
+    <li><a class="block hover:bg-blue-800 rounded p-2" href="../dashboard/dashboard.html">Dashboard</a></li>
     <li><a class="block hover:bg-blue-800 rounded p-2" href="#">Relatorio</a></li>
     <li><a class="block hover:bg-red-800 rounded p-2" href="#">Logout</a></li>
    </ul>
@@ -219,23 +219,24 @@ $estoque = $estoques->fetch_assoc();
                         <!--adicionar produto-->
             <section class="flex flex-col gap-3 bg-blue-900 rounded-lg h-80 shadow-2xl mt-15">
                 <h1 class="text-xl font-bold text-white mt-3 ml-3">Adicionar produto</h1>
-                <form class="text-white text-base font-medium flex flex-col gap-8 ml-3" action="">
+                <form class="text-white text-base font-medium flex flex-col gap-8 ml-3" action="create_pr.php" method="post">
+                       <input type="hidden" name="id_estoque" value="<?php echo $id_estoque; ?>">
                     <div class="flex flex-col mr-10">
                      <label for="categoria">nome:</label>
-                     <input class="bg-blue-950 outline-0 rounded-lg h-10" type="text" name="" id="" placeholder="name:">
+                     <input class="bg-blue-950 outline-0 rounded-lg h-10" type="text" name="nome" id="" placeholder="name:">
                     </div>
                 <div class="flex flex-row gap-5 mr-10">
                         <div class="flex flex-col">
-                    <label for="categoria">Quantidade:</label>
-                     <input class="bg-blue-950 outline-0 rounded-lg w-125 h-10" type="number" name="" id="" placeholder="0">
-                        </div>
-                        <div class="flex flex-col">
                     <label for="categoria">Preço:</label>
-                     <input class="bg-blue-950 outline-0 rounded-lg w-125 h-10" type="number" name="" id="" placeholder="o,oo">
+                     <input class="bg-blue-950 outline-0 rounded-lg w-125 h-10" type="number" name="prec" id="" placeholder="o,oo">
+                        </div>
+                                                <div class="flex flex-col">
+                    <label for="categoria">Quantidade:</label>
+                     <input class="bg-blue-950 outline-0 rounded-lg w-125 h-10" type="number" name="quant" id="" placeholder="0">
                         </div>
                 </div>
                     <div>
-                        <input class="bg-green-500 text-white rounded hover:bg-green-600 ml-3 w-20 h-10" type="button" value="Adicionar">
+                        <button class="bg-green-500 text-white rounded hover:bg-green-600 ml-3 w-20 h-10" type="submit" value="">adicionar</utton>
                     </div>
                 </form>
             </section>
