@@ -40,7 +40,7 @@ $usuario = $resultado->fetch_assoc();
         <li>
           <a
             class="block hover:bg-blue-800 rounded p-2"
-            href="../dashboard/gerenciador/index.html"
+            href="gerenciador.php"
             >Gerenciador</a
           >
         </li>
@@ -48,7 +48,7 @@ $usuario = $resultado->fetch_assoc();
           <a class="block hover:bg-blue-800 rounded p-2" href="#">Relatorio</a>
         </li>
         <li>
-          <a class="block hover:bg-red-800 rounded p-2" href="#">Logout</a>
+          <a class="block hover:bg-red-800 rounded p-2" href="logout.php">Logout</a>
         </li>
       </ul>
     </section>
@@ -77,6 +77,12 @@ $usuario = $resultado->fetch_assoc();
             editar perfil
          </button>
         </a>
+        <form action="delete_account.php" method="POST">
+    <input type="hidden" name="confirm" value="yes">
+    <button class="text-blue-500 hover:text-red-600 font-medium" type="submit" class="botao-excluir">
+        Excluir minha conta
+    </button>
+</form>
       </section>
     </main>
   </body>
