@@ -22,8 +22,8 @@ $resultado = $stmt->get_result();
 
 // Verifica se encontrou algum usuário
 if ($resultado && $resultado->num_rows > 0) {
-    $usuario = $resultado->fetch_assoc(); // ✅ define $usuario corretamente
-    $_SESSION['usuario_id'] = $usuario['id_usuario']; // ✅ salva ID na sessão
+    $usuario = $resultado->fetch_assoc(); //  define $usuario corretamente
+    $_SESSION['usuario_id'] = $usuario['id_usuario']; //  salva ID na sessão
 
     header("Location: ../pages/dashboard/dashboard.html");
     exit;

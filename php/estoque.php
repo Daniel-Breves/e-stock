@@ -11,6 +11,18 @@ $stmt->bind_param("ii", $id_estoque, $id_usuario);
 $stmt->execute();
 $estoques = $stmt->get_result();
 $estoque = $estoques->fetch_assoc();
+
+$sql_two = "SELECT * FROM produtos WHERE id_estoque = ?";
+$stmt_two = $conexao->prepare($sql_two);
+$stmt_two->bind_param("i", $id_estoque);
+$stmt_two->execute();
+$produtos = $stmt_two->get_result();
+
+$lista_produtos = [];
+while ($row = $produtos->fetch_assoc()) {
+    $lista_produtos[] = $row;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -68,43 +80,20 @@ $estoque = $estoques->fetch_assoc();
                             </th>
                         </tr>
                     </thead>
+                                    <?php foreach ($lista_produtos as $produto): ?>
                     <tbody>
                         <tr class="border-b border-slate-200">
                             <td class="py-2">
-                                123456789
+                                <?php echo htmlspecialchars($produto['id_produto']) ?>
                             </td>
                             <td class="py-2">
-                                mouse gamer
+                                           <?php echo htmlspecialchars($produto['nome_produto']) ?>
                             </td>
                             <td class="py-2">
-                                300,00
+                                           <?php echo htmlspecialchars($produto['preco']) ?>
                             </td>
                             <td class="py-2">
-                                10
-                            </td>
-                            <td class="py-2">
-                                23
-                            </td>
-                            <td class="py-2">
-                                21
-                            </td>
-                            <td>
-                              <button class="text-blue-600 hover:underline">Editar</button>
-                            <button class="text-red-500 hover:underline ml-2">Excluir</button>
-                            </td>
-                        </tr>
-                                                <tr class="border-b border-slate-200">
-                            <td class="py-2">
-                                123456789
-                            </td>
-                            <td class="py-2">
-                                mouse gamer
-                            </td>
-                            <td class="py-2">
-                                300,00
-                            </td>
-                            <td class="py-2">
-                                10
+                                           <?php echo htmlspecialchars($produto['quantidade']) ?>
                             </td>
                             <td class="py-2">
                                 23
@@ -113,107 +102,17 @@ $estoque = $estoques->fetch_assoc();
                                 21
                             </td>
                             <td>
-                              <button class="text-blue-600 hover:underline">Editar</button>
-                            <button class="text-red-500 hover:underline ml-2">Excluir</button>
-                            </td>
-                        </tr>
-                                                <tr class="border-b border-slate-200">
-                            <td class="py-2">
-                                123456789
-                            </td>
-                            <td class="py-2">
-                                mouse gamer
-                            </td>
-                            <td class="py-2">
-                                300,00
-                            </td>
-                            <td class="py-2">
-                                10
-                            </td>
-                            <td class="py-2">
-                                23
-                            </td>
-                            <td class="py-2">
-                                21
-                            </td>
-                            <td>
-                              <button class="text-blue-600 hover:underline">Editar</button>
-                            <button class="text-red-500 hover:underline ml-2">Excluir</button>
-                            </td>
-                        </tr>
-                                                <tr class="border-b border-slate-200">
-                            <td class="py-2">
-                                123456789
-                            </td>
-                            <td class="py-2">
-                                mouse gamer
-                            </td>
-                            <td class="py-2">
-                                300,00
-                            </td>
-                            <td class="py-2">
-                                10
-                            </td>
-                            <td class="py-2">
-                                23
-                            </td>
-                            <td class="py-2">
-                                21
-                            </td>
-                            <td>
-                              <button class="text-blue-600 hover:underline">Editar</button>
-                            <button class="text-red-500 hover:underline ml-2">Excluir</button>
-                            </td>
-                        </tr>
-                                                <tr class="border-b border-slate-200">
-                            <td class="py-2">
-                                123456789
-                            </td>
-                            <td class="py-2">
-                                mouse gamer
-                            </td>
-                            <td class="py-2">
-                                300,00
-                            </td>
-                            <td class="py-2">
-                                10
-                            </td>
-                            <td class="py-2">
-                                23
-                            </td>
-                            <td class="py-2">
-                                21
-                            </td>
-                            <td>
-                              <button class="text-blue-600 hover:underline">Editar</button>
-                            <button class="text-red-500 hover:underline ml-2">Excluir</button>
-                            </td>
-                        </tr>
-                                                <tr class="border-b border-slate-200">
-                            <td class="py-2">
-                                123456789
-                            </td>
-                            <td class="py-2">
-                                mouse gamer
-                            </td>
-                            <td class="py-2">
-                                300,00
-                            </td>
-                            <td class="py-2">
-                                10
-                            </td>
-                            <td class="py-2">
-                                23
-                            </td>
-                            <td class="py-2">
-                                21
-                            </td>
-                            <td>
-                              <button class="text-blue-600 hover:underline">Editar</button>
+<a class="text-blue-600 hover:underline" 
+   href="editar_produto.php?id_produto=<?php echo $produto['id_produto']; ?>&id_estoque=<?php echo $produto['id_estoque']; ?>">
+   Editar
+</a>
+
+
                             <button class="text-red-500 hover:underline ml-2">Excluir</button>
                             </td>
                         </tr>
                     </tbody>
+                        <?php endforeach; ?>
                 </table>
             </section>
                         <!--adicionar produto-->
@@ -242,14 +141,15 @@ $estoque = $estoques->fetch_assoc();
             </section>
                     <!--colunas de produtos-->
                         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 ml-10 mt-10">
+         <?php foreach ($lista_produtos as $produto): ?>
       <div class="bg-blue-950 rounded-lg mt-10 w-80 h-60 hover:scale-110 delay-50 shadow-xl justify">
-                <h1 class="flex text-4xl font-bold text-white justify-center">Produto</h1>
+                <h1 class="flex text-3xl font-bold text-white justify-center"><?php echo htmlspecialchars($produto['nome_produto']) ?></h1>
             <div class="flex flex-col gap-3 mt-5">
                 <h3 class="text-xl font-bold text-red-500 flex justify-center">
-                    Preço: 500.00
+                    Preço: <?php echo htmlspecialchars($produto['preco']) ?>
                 </h3>
                  <h3 class="text-xl font-bold text-yellow-500 flex justify-center">
-                    Quantidade: 50
+                    Quantidade: <?php echo htmlspecialchars($produto['quantidade']) ?>
                 </h3>
             </div>
             <div class="flex flex-row gap-3 justify-center">
@@ -261,101 +161,7 @@ $estoque = $estoques->fetch_assoc();
                 </button>
             </div>
           </div>
-        <div class="bg-blue-950 rounded-lg mt-10 w-80 h-60 hover:scale-110 delay-50 shadow-xl justify">
-                <h1 class="flex text-4xl font-bold text-white justify-center">Produto</h1>
-            <div class="flex flex-col gap-3 mt-5">
-                <h3 class="text-xl font-bold text-red-500 flex justify-center">
-                    Preço: 500.00
-                </h3>
-                 <h3 class="text-xl font-bold text-yellow-500 flex justify-center">
-                    Quantidade: 50
-                </h3>
-            </div>
-            <div class="flex flex-row gap-3 justify-center">
-                <button class="bg-green-500 hover:bg-green-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
-                    entrada
-                </button>
-                <button class="bg-red-500 hover:bg-red-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
-                    saida
-                </button>
-            </div>
-          </div>
-        <div class="bg-blue-950 rounded-lg mt-10 w-80 h-60 hover:scale-110 delay-50 shadow-xl justify">
-                <h1 class="flex text-4xl font-bold text-white justify-center">Produto</h1>
-            <div class="flex flex-col gap-3 mt-5">
-                <h3 class="text-xl font-bold text-red-500 flex justify-center">
-                    Preço: 500.00
-                </h3>
-                 <h3 class="text-xl font-bold text-yellow-500 flex justify-center">
-                    Quantidade: 50
-                </h3>
-            </div>
-            <div class="flex flex-row gap-3 justify-center">
-                <button class="bg-green-500 hover:bg-green-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
-                    entrada
-                </button>
-                <button class="bg-red-500 hover:bg-red-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
-                    saida
-                </button>
-            </div>
-          </div>
-    <div class="bg-blue-950 rounded-lg mt-10 w-80 h-60 hover:scale-110 delay-50 shadow-xl justify">
-                <h1 class="flex text-4xl font-bold text-white justify-center">Produto</h1>
-            <div class="flex flex-col gap-3 mt-5">
-                <h3 class="text-xl font-bold text-red-500 flex justify-center">
-                    Preço: 500.00
-                </h3>
-                 <h3 class="text-xl font-bold text-yellow-500 flex justify-center">
-                    Quantidade: 50
-                </h3>
-            </div>
-            <div class="flex flex-row gap-3 justify-center">
-                <button class="bg-green-500 hover:bg-green-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
-                    entrada
-                </button>
-                <button class="bg-red-500 hover:bg-red-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
-                    saida
-                </button>
-            </div>
-          </div>
-          <div class="bg-blue-950 rounded-lg mt-10 w-80 h-60 hover:scale-110 delay-50 shadow-xl justify">
-                <h1 class="flex text-4xl font-bold text-white justify-center">Produto</h1>
-            <div class="flex flex-col gap-3 mt-5">
-                <h3 class="text-xl font-bold text-red-500 flex justify-center">
-                    Preço: 500.00
-                </h3>
-                 <h3 class="text-xl font-bold text-yellow-500 flex justify-center">
-                    Quantidade: 50
-                </h3>
-            </div>
-            <div class="flex flex-row gap-3 justify-center">
-                <button class="bg-green-500 hover:bg-green-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
-                    entrada
-                </button>
-                <button class="bg-red-500 hover:bg-red-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
-                    saida
-                </button>
-            </div>
-          </div>
-               <div class="bg-blue-950 rounded-lg mt-10 w-80 h-60 hover:scale-110 delay-50 shadow-xl justify">
-                <h1 class="flex text-4xl font-bold text-white justify-center">Produto</h1>
-            <div class="flex flex-col gap-3 mt-5">
-                <h3 class="text-xl font-bold text-red-500 flex justify-center">
-                    Preço: 500.00
-                </h3>
-                 <h3 class="text-xl font-bold text-yellow-500 flex justify-center">
-                    Quantidade: 50
-                </h3>
-            </div>
-            <div class="flex flex-row gap-3 justify-center">
-                <button class="bg-green-500 hover:bg-green-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
-                    entrada
-                </button>
-                <button class="bg-red-500 hover:bg-red-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
-                    saida
-                </button>
-            </div>
-          </div>
+          <?php endforeach; ?>
             </section>
     </main>
 </body>
