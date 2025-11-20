@@ -40,7 +40,7 @@ while ($row = $produtos->fetch_assoc()) {
                 <input class="bg-slate-200 shadow-xl outline-1 outline-gray-300 rounded-md w-70 h-10 text-center fixed ml-230" type="search" name="search" id="srch" placeholder="Search:">
             </section>
             </header>
-    <section class="bg-blue-900 w-64 h-screen text-white fixed">
+    <section class="bg-blue-800 w-64 h-screen text-white fixed shadow-lg">
         <img class="w-30 ml-5" src="logo.png" alt="">
    <p class="text-xl font-bold ml-5 mt-5">Menu</p>
    <ul class="ml-5 mt-10 mr-5 flex flex-col gap-5">
@@ -53,8 +53,8 @@ while ($row = $produtos->fetch_assoc()) {
     </section>
     <main class="ml-64 p-6 flex flex-col">
                     <!--tabela do estoque-->
-            <section class="shadow-xl bg-blue-950 text-white rounded-lg w-210 ml-10">
-                <h1 class="text-white font-bold text-2xl ml-5">
+            <section class="shadow-lg bg-white text-slate-800 rounded-xl p-5 w-210 ml-10">
+                <h1 class="font-bold text-2xl ml-5">
                     Estoque atual
                 </h1>
                 <table class="w-200 h-25 text-sm ml-5 mt-5">
@@ -116,22 +116,22 @@ while ($row = $produtos->fetch_assoc()) {
                 </table>
             </section>
                         <!--adicionar produto-->
-            <section class="flex flex-col gap-3 bg-blue-900 rounded-lg h-80 shadow-2xl mt-15">
-                <h1 class="text-xl font-bold text-white mt-3 ml-3">Adicionar produto</h1>
+            <section class="flex flex-col gap-3 bg-white rounded-xl p-6 shadow-md border border-slate-200 w-275 mt-5">
+                <h1 class="text-xl font-bold text-blue-950 mt-3 ml-3">Adicionar produto</h1>
                 <form class="text-white text-base font-medium flex flex-col gap-8 ml-3" action="create_pr.php" method="post">
                        <input type="hidden" name="id_estoque" value="<?php echo $id_estoque; ?>">
                     <div class="flex flex-col mr-10">
                      <label for="categoria">nome:</label>
-                     <input class="bg-blue-950 outline-0 rounded-lg h-10" type="text" name="nome" id="" placeholder="name:">
+                     <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 px-3 text-blue-950" type="text" name="nome" id="" placeholder="name:">
                     </div>
                 <div class="flex flex-row gap-5 mr-10">
                         <div class="flex flex-col">
                     <label for="categoria">Preço:</label>
-                     <input class="bg-blue-950 outline-0 rounded-lg w-125 h-10" type="number" name="prec" id="" placeholder="o,oo">
+                     <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 w-125 px-3 text-blue-950" type="number" name="prec" id="" placeholder="o,oo">
                         </div>
                                                 <div class="flex flex-col">
                     <label for="categoria">Quantidade:</label>
-                     <input class="bg-blue-950 outline-0 rounded-lg w-125 h-10" type="number" name="quant" id="" placeholder="0">
+                     <input class="bg-slate-100 outline-none rounded-lg h-10 w-125 border border-slate-300 px-3 text-blue-950" type="number" name="quant" id="" placeholder="0">
                         </div>
                 </div>
                     <div>
@@ -142,8 +142,8 @@ while ($row = $produtos->fetch_assoc()) {
                     <!--colunas de produtos-->
                         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 ml-10 mt-10">
          <?php foreach ($lista_produtos as $produto): ?>
-      <div class="bg-blue-950 rounded-lg mt-10 w-80 h-60 hover:scale-110 delay-50 shadow-xl justify">
-                <h1 class="flex text-3xl font-bold text-white justify-center"><?php echo htmlspecialchars($produto['nome_produto']) ?></h1>
+      <div class="bg-white rounded-xl shadow-md p-5 border border-slate-200 hover:shadow-xl transition">
+                <h1 class="flex text-3xl font-bold text-blue-950 justify-center"><?php echo htmlspecialchars($produto['nome_produto']) ?></h1>
             <div class="flex flex-col gap-3 mt-5">
                 <h3 class="text-xl font-bold text-red-500 flex justify-center">
                     Preço: <?php echo htmlspecialchars($produto['preco']) ?>

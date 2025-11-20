@@ -3,8 +3,8 @@ require_once 'shield.php';
 include("conect.php");
 
 $id_usuario = $_SESSION['usuario_id'];
-$id_estoque = $_GET['id_produto'];
 $id_produto = $_GET['id_produto'];
+$id_estoque = $_GET['id_estoque'];
 
 $sql = "SELECT * FROM produtos WHERE id_produto = ? AND id_estoque = ?";
 $stmt = $conexao->prepare($sql);
@@ -29,28 +29,28 @@ $produto = $produtos->fetch_assoc();
         </h1>
         <div class="ml-5 mr-5">
     <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Nome:</label><br>
-    <input readonly class="border-1 rounded ml-5 mr-5 h-10 w-125" type="text" name="nome" value="<?php echo htmlspecialchars($produto['preco']); ?>" required><br><br>
+    <input readonly class="border-1 rounded ml-5 mr-5 h-10 w-125" type="text" name="nome" value="<?php echo htmlspecialchars($produto['nome_produto']); ?>" required><br><br>
         </div>
         <div class="ml-5 mr-5">
-    <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Email:</label><br>
-    <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="email" name="email" id="email" value="<?php echo htmlspecialchars($usuario['email']); ?>" required>
+    <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Preço:</label><br>
+    <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="email" name="email" id="email" value="<?php echo htmlspecialchars($produto['preco']); ?>" required>
                    <span class="text-red-500 text-xs erro-msg" id="erro-email"></span><br><br>
         </div>
                 <div class="ml-5 mr-5">
-    <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Cpf:</label><br>
-    <input readonly class="border-1 rounded ml-5 mr-5 h-10 w-125" type="number" name="cpf" value="<?php echo htmlspecialchars($usuario['cpf']); ?>" required><br><br>
+    <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Quantidade:</label><br>
+    <input readonly class="border-1 rounded ml-5 mr-5 h-10 w-125" type="number" name="cpf" value="<?php echo htmlspecialchars($produto['quantidade']); ?>"
         </div>
         <div class="ml-5 mr-5">
-    <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Telefone:</label><br>
-    <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="number" name="tel" id="tel" value="<?php echo htmlspecialchars($usuario['telefone']); ?>" required>
+    <label class=" mr-5 text-lg font-semibold text-blue-950">Entradas:</label><br>
+    <input class="border-1 rounded mr-5 h-10 w-125" type="number" name="tel" id="tel" value="23" required>
                    <span class="text-red-500 text-xs erro-msg" id="erro-tel"></span><br><br>
         </div>
-                <div class="ml-5 mr-5">
-    <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Cep:</label><br>
-    <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="number" name="cep" id="cep" value="<?php echo htmlspecialchars($usuario['cep']); ?>" required>
+                <div class=" mr-5">
+    <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Saídas:</label><br>
+    <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="number" name="cep" id="cep" value="21" required>
                    <span class="text-red-500 text-xs erro-msg" id="erro-cep"></span><br><br>
         </div>
-        <div class="ml-10">
+        <div class="ml-5">
     <button class="bg-blue-800 text-white shadow-xl rounded-lg hover:bg-blue-700 h-10 w-35" type="submit">Salvar Alterações</button>
             <a class="text-blue-700 font-medium hover:text-blue-800 ml-3" href="perfil.php">voltar</a>
         </div>
