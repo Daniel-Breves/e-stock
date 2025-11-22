@@ -106,9 +106,9 @@ while ($row = $produtos->fetch_assoc()) {
    href="editar_produto.php?id_produto=<?php echo $produto['id_produto']; ?>&id_estoque=<?php echo $produto['id_estoque']; ?>">
    Editar
 </a>
-
-
-                            <button class="text-red-500 hover:underline ml-2">Excluir</button>
+<a href="delete_pr.php?id_produto=<?php echo $produto['id_produto']; ?>&id_estoque=<?php echo $produto['id_estoque']; ?>">
+     <button class="text-red-500 hover:underline ml-2">Excluir</button>
+</a>
                             </td>
                         </tr>
                     </tbody>
@@ -121,16 +121,16 @@ while ($row = $produtos->fetch_assoc()) {
                 <form class="text-white text-base font-medium flex flex-col gap-8 ml-3" action="create_pr.php" method="post">
                        <input type="hidden" name="id_estoque" value="<?php echo $id_estoque; ?>">
                     <div class="flex flex-col mr-10">
-                     <label for="categoria">nome:</label>
+                     <label class="text-blue-950" for="categoria">nome:</label>
                      <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 px-3 text-blue-950" type="text" name="nome" id="" placeholder="name:">
                     </div>
                 <div class="flex flex-row gap-5 mr-10">
                         <div class="flex flex-col">
-                    <label for="categoria">Preço:</label>
+                    <label class="text-blue-950" for="preço">Preço:</label>
                      <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 w-125 px-3 text-blue-950" type="number" name="prec" id="" placeholder="o,oo">
                         </div>
                                                 <div class="flex flex-col">
-                    <label for="categoria">Quantidade:</label>
+                    <label class="text-blue-950" for="quantidade">Quantidade:</label>
                      <input class="bg-slate-100 outline-none rounded-lg h-10 w-125 border border-slate-300 px-3 text-blue-950" type="number" name="quant" id="" placeholder="0">
                         </div>
                 </div>
