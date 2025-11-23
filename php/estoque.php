@@ -33,10 +33,51 @@ while ($row = $produtos->fetch_assoc()) {
     <title>Gerenciador</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+<!-- modal -->
+<div id="modalEditarEstoque" 
+     class="fixed inset-0 bg-black/50 flex items-center justify-center hidden">
+    
+    <div class="bg-white w-96 p-6 rounded-xl shadow-xl">
+        <h2 class="text-2xl font-bold text-slate-800 mb-4">Editar Estoque</h2>
+
+        <form action="update_estoque.php" method="POST" class="flex flex-col gap-4">
+            
+            <input type="hidden" name="id_estoque" value="<?php echo $id_estoque; ?>">
+
+            <label class="text-blue-950 font-semibold">Nome do estoque:</label>
+            <input 
+                type="text" 
+                name="categoria" 
+                value="<?php echo htmlspecialchars($estoque['categoria']) ?>"
+                class="bg-slate-100 border border-slate-300 rounded-lg px-3 h-10"
+            >
+
+            <button 
+                class="bg-green-600 hover:bg-green-700 text-white rounded-lg h-10 font-bold">
+                Salvar alterações
+            </button>
+        </form>
+
+        <button id="fecharModal" 
+                class="mt-4 text-red-600 font-bold hover:underline">
+            Cancelar
+        </button>
+    </div>
+</div>
 <body class="bg-slate-100 flex flex-col">
             <header class="ml-64 p-6">
-            <section class="flex flex-row gap-150">
+            <section class="flex flex-row gap-50">
                 <h1 class="text-5xl font-bold text-slate-800 text-shadow-lg"><?php echo htmlspecialchars($estoque['categoria']) ?></h1>
+                <div>
+<button id="btnEditarEstoque" 
+class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10">
+    editar estoque
+</button>
+
+            <a href="delete_estoque.php?id=<?php echo $estoque['id_estoque']; ?>">
+                <button class="bg-red-500 text-white font-bold rounded hover:bg-red-600 ml-3 w-35 h-10">excluir estoque</button>
+            </a>
+                </div>
                 <input class="bg-slate-200 shadow-xl outline-1 outline-gray-300 rounded-md w-70 h-10 text-center fixed ml-230" type="search" name="search" id="srch" placeholder="Search:">
             </section>
             </header>
@@ -164,5 +205,15 @@ while ($row = $produtos->fetch_assoc()) {
           <?php endforeach; ?>
             </section>
     </main>
+    <script>
+document.getElementById("btnEditarEstoque").addEventListener("click", () => {
+    document.getElementById("modalEditarEstoque").classList.remove("hidden");
+});
+
+document.getElementById("fecharModal").addEventListener("click", () => {
+    document.getElementById("modalEditarEstoque").classList.add("hidden");
+});
+</script>
+
 </body>
 </html>
