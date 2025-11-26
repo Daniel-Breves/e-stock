@@ -8,6 +8,7 @@ $id_estoque = $_POST['id_estoque'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nm = $_POST["nome"];
+    $ct = $_POST["custo"];
     $prc = $_POST["preco"];
     $qnt = $_POST["quanti"];
     $ent = $_POST["entrada"];
@@ -19,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Query com WHERE e placeholders
-    $sql = "UPDATE produtos SET nome_produto = ?, preco = ?, quantidade = ?, entrada = ?, saida = ? WHERE id_produto = ?";
+    $sql = "UPDATE produtos SET nome_produto = ?, custo = ?, preco = ?, quantidade = ?, entrada = ?, saida = ? WHERE id_produto = ?";
     $stmt = $conexao->prepare($sql);
 
     if (!$stmt) {
@@ -27,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Bind dos parâmetros
-    $stmt->bind_param("sdiiii", $nm, $prc, $qnt, $ent, $sai, $id_produto);
+    $stmt->bind_param("sddiiii", $nm, $ct, $prc, $qnt, $ent, $sai, $id_produto);
 
     // Executa a query preparada
     if ($stmt->execute()) {

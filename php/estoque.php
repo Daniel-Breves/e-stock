@@ -107,6 +107,9 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
                             <th class="py-2">
                                 produto
                             </th>
+                            <th>
+                                custo
+                            </th>
                             <th class="py-2">
                                 preço
                             </th>
@@ -129,6 +132,9 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
                             </td>
                             <td class="py-2">
                                            <?php echo htmlspecialchars($produto['nome_produto']) ?>
+                            </td>
+                                                        <td class="py-2">
+                                           <?php echo htmlspecialchars($produto['custo']) ?>
                             </td>
                             <td class="py-2">
                                            <?php echo htmlspecialchars($produto['preco']) ?>
@@ -161,14 +167,22 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
                 <h1 class="text-xl font-bold text-blue-950 mt-3 ml-3">Adicionar produto</h1>
                 <form class="text-white text-base font-medium flex flex-col gap-8 ml-3" action="create_pr.php" method="post">
                        <input type="hidden" name="id_estoque" value="<?php echo $id_estoque; ?>">
-                    <div class="flex flex-col mr-10">
+                       <div class="flex flex-row">
+                        <div class="flex flex-col mr-10">
                      <label class="text-blue-950" for="categoria">nome:</label>
-                     <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 px-3 text-blue-950" type="text" name="nome" id="" placeholder="name:">
+                     <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 w-125 px-3 text-blue-950" type="text" name="nome" id="" placeholder="name:">
                     </div>
+                    <div>
+                        <label class="text-blue-950" for="custo">custo:</label>
+                        <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 w-125 px-3 text-blue-950" type="number" name="custo"   step="0.01" min="0" placeholder="0,00">
+                    </div>
+
+                       </div>
+                    
                 <div class="flex flex-row gap-5 mr-10">
                         <div class="flex flex-col">
                     <label class="text-blue-950" for="preço">Preço:</label>
-                     <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 w-125 px-3 text-blue-950" type="number" name="prec" id="" placeholder="o,oo">
+                     <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 w-125 px-3 text-blue-950" type="number" name="prec"  step="0.01" min="0" placeholder="o,oo">
                         </div>
                                                 <div class="flex flex-col">
                     <label class="text-blue-950" for="quantidade">Quantidade:</label>

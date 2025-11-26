@@ -34,8 +34,12 @@ $produto = $produtos->fetch_assoc();
     <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="text" name="nome" value="<?php echo htmlspecialchars($produto['nome_produto']); ?>" required><br><br>
         </div>
         <div class="ml-5 mr-5">
+          <label class="ml-5 mr-5 text-lg font-semibold text-blue-950" for="custo">custo:</label>
+          <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="number" name="custo" id="custo"  step="0.01" min="0"  value="<?php echo htmlspecialchars($produto['custo']); ?>">
+        </div>
+        <div class="ml-5 mr-5">
     <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Preço:</label><br>
-    <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="number" name="preco" id="preco" value="<?php echo htmlspecialchars($produto['preco']); ?>" required>
+    <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="number" name="preco" id="preco"  step="0.01" min="0" value="<?php echo htmlspecialchars($produto['preco']); ?>" required>
                    <span class="text-red-500 text-xs erro-msg" id="erro-email"></span><br><br>
         </div>
                 <div class="ml-5 mr-5">
