@@ -20,8 +20,18 @@ $produtos = $stmt_two->get_result();
 
 $lista_produtos = [];
 while ($row = $produtos->fetch_assoc()) {
+    $saidas = (float)$row['saida'];
+    $preco = (float)$row['preco'];
+    $entradas = (float)$row['entrada'];
+    $custo = (float)$row['custo'];
+
+    $row['lucro'] = ($saidas * $preco) - ($entradas * $custo);
+
+
     $lista_produtos[] = $row;
 }
+
+//$lucro = ($lista_produtos['saida']*$lista_produtos['preco']) - ($lista_produtos['entrada']*$lista_produtos['custo']);
 
 ?>
 
@@ -122,6 +132,9 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
                             <th class="py-2">
                                 saídas
                             </th>
+                            <th class="py-2">
+                                lucro
+                            </th>
                         </tr>
                     </thead>
                                     <?php foreach ($lista_produtos as $produto): ?>
@@ -143,10 +156,13 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
                                            <?php echo htmlspecialchars($produto['quantidade']) ?>
                             </td>
                             <td class="py-2">
-                                23
+                                 <?php echo htmlspecialchars($produto['entrada']) ?>
                             </td>
                             <td class="py-2">
-                                21
+                                 <?php echo htmlspecialchars($produto['saida']) ?>
+                            </td>
+                            <td class="py-2 font-bold <?php echo $produto['lucro'] >= 0 ? 'text-green-600' : 'text-red-600'; ?>">
+                                     <?php echo htmlspecialchars($produto['lucro']) ?>
                             </td>
                             <td>
 <a class="text-blue-600 hover:underline" 
@@ -208,12 +224,16 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
                 </h3>
             </div>
             <div class="flex flex-row gap-3 justify-center">
-                <button class="bg-green-500 hover:bg-green-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
+            <a href="mov.php?tipo=entrada&id_produto=<?php echo $produto['id_produto']; ?>&id_estoque=<?php echo $id_estoque; ?>">
+          <button name="entrada" class="bg-green-500 hover:bg-green-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
                     entrada
                 </button>
-                <button class="bg-red-500 hover:bg-red-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
+         </a>
+         <a href="mov.php?tipo=saida&id_produto=<?php echo $produto['id_produto']; ?>&id_estoque=<?php echo $id_estoque; ?>">
+                <button name="saida" class="bg-red-500 hover:bg-red-600 rounded text-base font-bold text-white w-25 h-8 mt-8">
                     saida
                 </button>
+         </a>
             </div>
           </div>
           <?php endforeach; ?>

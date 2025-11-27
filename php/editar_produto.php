@@ -48,12 +48,12 @@ $produto = $produtos->fetch_assoc();
         </div>
         <div class="ml-5 mr-5">
     <label class=" mr-5 text-lg font-semibold text-blue-950">Entradas:</label><br>
-    <input class="border-1 rounded mr-5 h-10 w-125" type="number" name="entrada" id="tel" value="23" required>
+    <input class="border-1 rounded mr-5 h-10 w-125" type="number" name="entrada" id="entradas" value="<?php echo htmlspecialchars($produto['entrada']); ?>" required>
                    <span class="text-red-500 text-xs erro-msg" id="erro-tel"></span><br><br>
         </div>
                 <div class=" mr-5">
     <label class="ml-5 mr-5 text-lg font-semibold text-blue-950">Saídas:</label><br>
-    <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="number" name="saida" id="cep" value="21" required>
+    <input class="border-1 rounded ml-5 mr-5 h-10 w-125" type="number" name="saida" id="cep" value="<?php echo htmlspecialchars($produto['saida']); ?>" required>
                    <span class="text-red-500 text-xs erro-msg" id="erro-cep"></span><br><br>
         </div>
         <div class="ml-5">
