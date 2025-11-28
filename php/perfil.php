@@ -23,32 +23,32 @@ $usuario = $resultado->fetch_assoc();
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body class="bg-slate-100 flex">
-    <section class="bg-blue-900 w-64 h-screen text-white fixed">
+    <section class="bg-blue-800 w-64 h-screen text-white fixed shadow-lg">
       <img class="w-30 ml-5" src="../images/logo.png" alt="" />
       <p class="text-xl font-bold ml-5 mt-5">Menu</p>
       <ul class="ml-5 mt-10 mr-5 flex flex-col gap-5">
         <li>
-          <a class="block hover:bg-blue-800 rounded p-2" href="#"
+          <a class="block hover:bg-blue-900 rounded p-2" href="#"
             >Configurações</a
           >
         </li>
         <li>
-          <a class="block hover:bg-blue-800 rounded p-2" href="../pages/dashboard/dashboard.html"
+          <a class="block hover:bg-blue-900 rounded p-2" href="dashboard.php"
             >Dashboard</a
           >
         </li>
         <li>
           <a
-            class="block hover:bg-blue-800 rounded p-2"
+            class="block hover:bg-blue-900 rounded p-2"
             href="gerenciador.php"
             >Gerenciador</a
           >
         </li>
         <li>
-          <a class="block hover:bg-blue-800 rounded p-2" href="#">Relatorio</a>
+          <a class="block hover:bg-blue-900 rounded p-2" href="#">Relatorio</a>
         </li>
         <li>
-          <a class="block hover:bg-red-800 rounded p-2" href="logout.php">Logout</a>
+          <a class="block hover:bg-red-900 rounded p-2" href="logout.php">Logout</a>
         </li>
       </ul>
     </section>

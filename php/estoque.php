@@ -25,14 +25,59 @@ while ($row = $produtos->fetch_assoc()) {
     $entradas = (float)$row['entrada'];
     $custo = (float)$row['custo'];
 
+    $row['gasto'] = ($entradas*$custo);
+    $row['faturamento'] = ($saidas*$preco);
     $row['lucro'] = ($saidas * $preco) - ($entradas * $custo);
 
 
     $lista_produtos[] = $row;
-}
+
+    $id_produto = $row['id_produto'];
+    $sql_three = "UPDATE produtos SET gasto = ?, faturamento = ?, lucro = ? WHERE id_produto = ?";
+    $stmt_three = $conexao->prepare($sql_three);
+    $stmt_three->bind_param("dddi", $row['gasto'], $row['faturamento'], $row['lucro'], $id_produto);
+    $stmt_three->execute();
+
+    $sql_est = "SELECT    SUM(lucro) AS lucro_estoque,
+                            SUM(faturamento) AS faturamento_estoque,
+                            SUM(gasto) AS gastos_estoque 
+                            FROM produtos WHERE id_estoque = ?";
+    $stmt_est = $conexao->prepare($sql_est);
+    $stmt_est->bind_param("i", $id_estoque);
+    $stmt_est->execute();
+    $result_est = $stmt_est->get_result();
+    $total_est = $result_est->fetch_assoc();
+    $lucro_es = $total_est['lucro_estoque'];
+    $fat_es = $total_est['faturamento_estoque'];
+    $gas_es = $total_est['gastos_estoque'];
+
+    $sql_update_estoque = "UPDATE estoque SET lucro_estoque = ?, faturamento_estoque = ?, gastos_estoque = ? WHERE id_estoque = ?";
+    $stmt_update = $conexao->prepare($sql_update_estoque);
+    $stmt_update->bind_param("dddi", $lucro_es, $fat_es, $gas_es, $id_estoque);
+    $stmt_update->execute();
+
+    //soma de tudo para o usuario
+
+    $sql_total = "SELECT    SUM(lucro_estoque) AS lucro_total,
+                          SUM(faturamento_estoque) AS faturamento_total,
+                          SUM(gastos_estoque) AS gasto_total 
+                          FROM estoque WHERE id_usuario = ?";
+    $stmt_total = $conexao->prepare($sql_total);
+    $stmt_total->bind_param("i", $id_usuario);
+    $stmt_total->execute();
+    $result_total = $stmt_total->get_result();
+    $total_usu = $result_total->fetch_assoc();
+    $lucro_usu = $total_usu['lucro_total'];
+    $fat_usu = $total_usu['faturamento_total'];
+    $gas_usu = $total_usu['gasto_total'];
+
+    $sql_update_usu = "UPDATE usuarios SET lucro_total = ?, faturamento_total = ?, gasto_total = ? WHERE id_usuario = ?";
+    $stmt_update_usu = $conexao->prepare($sql_update_usu);
+    $stmt_update_usu->bind_param("dddi", $lucro_usu, $fat_usu, $gas_usu, $id_usuario);
+    $stmt_update_usu->execute();
 
 //$lucro = ($lista_produtos['saida']*$lista_produtos['preco']) - ($lista_produtos['entrada']*$lista_produtos['custo']);
-
+}
 ?>
 
 <!DOCTYPE html>
@@ -92,14 +137,14 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
             </section>
             </header>
     <section class="bg-blue-800 w-64 h-screen text-white fixed shadow-lg">
-        <img class="w-30 ml-5" src="logo.png" alt="">
+        <img class="w-30 ml-5" src="../images/logo.png" alt="">
    <p class="text-xl font-bold ml-5 mt-5">Menu</p>
    <ul class="ml-5 mt-10 mr-5 flex flex-col gap-5">
-    <li><a class="block hover:bg-blue-800 rounded p-2" href="#">Configurações</a></li>
-    <li><a class="block hover:bg-blue-800 rounded p-2" href="perfil.php">Perfil</a></li>
-    <li><a class="block hover:bg-blue-800 rounded p-2" href="../dashboard/dashboard.html">Dashboard</a></li>
-    <li><a class="block hover:bg-blue-800 rounded p-2" href="#">Relatorio</a></li>
-    <li><a class="block hover:bg-red-800 rounded p-2" href="#">Logout</a></li>
+    <li><a class="block hover:bg-blue-900 rounded p-2" href="#">Configurações</a></li>
+    <li><a class="block hover:bg-blue-900 rounded p-2" href="perfil.php">Perfil</a></li>
+    <li><a class="block hover:bg-blue-900 rounded p-2" href="dashboard.php">Dashboard</a></li>
+    <li><a class="block hover:bg-blue-900 rounded p-2" href="#">Relatorio</a></li>
+    <li><a class="block hover:bg-red-900 rounded p-2" href="#">Logout</a></li>
    </ul>
     </section>
     <main class="ml-64 p-6 flex flex-col">
@@ -217,10 +262,10 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
                 <h1 class="flex text-3xl font-bold text-blue-950 justify-center"><?php echo htmlspecialchars($produto['nome_produto']) ?></h1>
             <div class="flex flex-col gap-3 mt-5">
                 <h3 class="text-xl font-bold text-red-500 flex justify-center">
-                    Preço: <?php echo htmlspecialchars($produto['preco']) ?>
+                    Gasto: <?php echo htmlspecialchars($produto['gasto']) ?>
                 </h3>
-                 <h3 class="text-xl font-bold text-yellow-500 flex justify-center">
-                    Quantidade: <?php echo htmlspecialchars($produto['quantidade']) ?>
+                 <h3 class="text-xl font-bold text-blue-500 flex justify-center">
+                    Faturamento: <?php echo htmlspecialchars($produto['faturamento']) ?>
                 </h3>
             </div>
             <div class="flex flex-row gap-3 justify-center">

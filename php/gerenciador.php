@@ -5,7 +5,7 @@ include("conect.php");
 $id_usuario = $_SESSION['usuario_id'];
 
 // Consulta estoques do usuário
-$sql = "SELECT id_estoque, categoria FROM estoque WHERE id_usuario = ?";
+$sql = "SELECT * FROM estoque WHERE id_usuario = ?";
 $stmt = $conexao->prepare($sql);
 $stmt->bind_param("i", $id_usuario);
 $stmt->execute();
@@ -28,12 +28,12 @@ $estoques = $stmt->get_result();
             </section>
             </header>
     <section class="bg-blue-800 w-64 h-screen text-white fixed shadow-lg">
-        <img class="w-30 ml-5" src="logo.png" alt="">
+        <img class="w-30 ml-5" src="../images/logo.png" alt="">
    <p class="text-xl font-bold ml-5 mt-5">Menu</p>
    <ul class="ml-5 mt-10 mr-5 flex flex-col gap-5">
     <li><a class="block hover:bg-blue-900 rounded p-2" href="#">Configurações</a></li>
     <li><a class="block hover:bg-blue-900 rounded p-2" href="perfil.php">Perfil</a></li>
-    <li><a class="block hover:bg-blue-900 rounded p-2" href="../pages/dashboard/dashboard.html">Dashboard</a></li>
+    <li><a class="block hover:bg-blue-900 rounded p-2" href="dashboard.php">Dashboard</a></li>
     <li><a class="block hover:bg-blue-900 rounded p-2" href="#">Relatorio</a></li>
     <li><a class="block hover:bg-red-900 rounded p-2" href="#">Logout</a></li>
    </ul>
@@ -54,20 +54,20 @@ $estoques = $stmt->get_result();
             <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 ml-10 mt-10">
                 <?php while ($estoque = $estoques->fetch_assoc()): ?>
         <div class="bg-white rounded-xl shadow-md p-5 border border-slate-200 hover:shadow-xl transition">
-                <h1 class="text-4xl font-bold text-blue-950 ml-25">  <?php echo htmlspecialchars($estoque['categoria']) ?></h1>
-                <div class="flex flex-col gap-3 m-auto ml-25 mt-5">
+                <h1 class="text-4xl font-bold text-blue-950 text-center">  <?php echo htmlspecialchars($estoque['categoria']) ?></h1>
+                <div class="flex flex-col gap-3 m-auto mt-5 justify-center text-center">
             <h3 class="text-xl font-bold text-red-500">
-                    produto 1
+                   gastos: <?php echo htmlspecialchars($estoque['gastos_estoque']) ?>
                 </h3>
                  <h3 class="text-xl font-bold text-yellow-500">
-                    produto 2
+                    faturamento: <?php echo htmlspecialchars($estoque['faturamento_estoque']) ?>
                 </h3>
                  <h3 class="text-xl font-bold text-green-500">
-                    produto 3
+                   lucro: <?php echo htmlspecialchars($estoque['lucro_estoque']) ?>
                 </h3>
                 </div>
                 <a href="estoque.php?id=<?= $estoque['id_estoque'] ?>">
-                 <button class="bg-green-500 hover:bg-green-600 rounded text-base font-bold text-white w-25 h-8 ml-25 mt-8">
+                 <button class="bg-green-500 hover:bg-green-600 rounded text-base font-bold text-white w-25 h-8 flex justify-center m-auto mt-5">
                     ver mais
                 </button>
                 </a>
