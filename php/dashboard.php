@@ -27,6 +27,18 @@ $stmt_top->bind_param("i", $id_usuario);
 $stmt_top->execute();
 $top_produto = $stmt_top->get_result()->fetch_assoc();
 
+$sql_top_faturamento = "SELECT categoria, faturamento_estoque
+                        FROM estoque
+                        WHERE id_usuario = ?
+                        ORDER BY faturamento_estoque DESC
+                        LIMIT 1";
+
+$stmt_top_faturamento = $conexao->prepare($sql_top_faturamento);
+$stmt_top_faturamento->bind_param("i", $id_usuario);
+$stmt_top_faturamento->execute();
+$estoque_top = $stmt_top_faturamento->get_result()->fetch_assoc();
+
+
 //a mesma coisa(depois eu mudo tudo para entender cada parte do codigo e deixo u comentario abaixo)
 $sql_faltando = "SELECT p.nome_produto, p.quantidade
                  FROM produtos p
@@ -100,15 +112,32 @@ $produto_faltando = $stmt_faltando->get_result()->fetch_assoc();
       <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 ml-10 mt-3">
     <div class="bg-white rounded-xl shadow-md p-5 border border-slate-200 hover:shadow-xl transition flex flex-col gap-3">
     <h2 class="text-xl font-bold text-center">Produto com mais saída</h2>
-    <p class="text-gray-600 ml-5">Nome: <?php echo $top_produto['nome_produto']; ?></p>
-    <p class="text-gray-600 ml-5">Saídas: <?php echo $top_produto['saida']; ?></p>
+          <?php if ($top_produto): ?>
+    <p class="text-green-600 font-medium text-center"><?php echo $top_produto['nome_produto']; ?></p>
+    <p class="text-gray-600 text-center">Saidas: <?php echo $top_produto['saida']; ?></p>
+    <?php else: ?>
+            <p class="mt-3 text-gray-500 text-center">
+            Nenhum estoque encontrado.
+        </p>
+        <?php endif; ?>
     </div>
 
-     <div class="bg-white rounded-xl shadow-md p-5 border border-slate-200 hover:shadow-xl transition flex flex-col gap-3">
-    <h2 class="text-xl font-bold text-center">Estoque com mais faturamento</h2>
-    <p class="text-gray-600 ml-5">Estoque: <?php echo $top_produto['nome_produto']; ?></p>
-    <p class="text-gray-600 ml-5">Lucro: <?php echo $top_produto['saida']; ?></p>
-    </div>
+<div class="bg-white p-5 rounded shadow">
+    <h2 class="text-xl font-bold">Estoque com Maior Faturamento</h2>
+
+    <?php if ($estoque_top): ?>
+        <p class="mt-3 font-semibold text-blue-700 text-center">
+            <?= $estoque_top['categoria']; ?>
+        </p>
+        <p class="text-gray-600 text-center">
+            Faturamento: R$ <?= number_format($estoque_top['faturamento_estoque'], 2, ',', '.'); ?>
+        </p>
+    <?php else: ?>
+        <p class="mt-3 text-gray-500 text-center">
+            Nenhum estoque encontrado.
+        </p>
+    <?php endif; ?>
+</div>
 
      <div class="bg-white rounded-xl shadow-md p-5 border border-slate-200 hover:shadow-xl transition flex flex-col gap-3">
      <h2 class="text-xl font-bold text-center">Produto em Falta</h2>
