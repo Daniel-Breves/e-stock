@@ -27,7 +27,7 @@ $stmt_top->bind_param("i", $id_usuario);
 $stmt_top->execute();
 $top_produto = $stmt_top->get_result()->fetch_assoc();
 
-$sql_top_faturamento = "SELECT categoria, faturamento_estoque
+$sql_top_faturamento = "SELECT *
                         FROM estoque
                         WHERE id_usuario = ?
                         ORDER BY faturamento_estoque DESC
@@ -84,7 +84,7 @@ $produto_faltando = $stmt_faltando->get_result()->fetch_assoc();
           >
         </li>
         <li>
-          <a class="block hover:bg-blue-900 rounded p-2" href="#">Relatorio</a>
+          <a class="block hover:bg-blue-900 rounded p-2" href="relatorio.php?id=<?= $estoque_top['id_estoque'] ?>"">Relatorio</a>
         </li>
         <li>
           <a class="block hover:bg-red-900 rounded p-2" href="#">Logout</a>
