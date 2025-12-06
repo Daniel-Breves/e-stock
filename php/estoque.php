@@ -135,31 +135,29 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
                 </div>
             </section>
             </header>
-    <section class="bg-blue-800 lg:w-64 sm:w-16 h-screen text-white fixed shadow-lg">
-        <img class="w-30 ml-5" src="../images/logo.png" alt="">
-   <p class="text-xl font-bold ml-5 mt-5">Menu</p>
-   <ul class="ml-5 mt-10 mr-5 flex flex-col gap-5">
+    <section class="bg-white border-r-1 border-gray-50 w-64 h-screen text-white fixed shadow-lg  md:flex-row min-h-screen">
+      <img class="w-30 ml-5" src="../images/logo.png" alt="" />
+      <p class="text-xl font-bold ml-5 mt-5 text-sky-950">Menu</p>
+      <ul class="ml-5 mt-10 mr-5 flex flex-col gap-5">
         <li>
-          <a class="block hover:bg-blue-900 rounded p-2" href="perfil.php"
-            >Perfil</a
-          >
+          <a class="block hover:bg-gray-200 rounded p-2 text-blue-950 font-bold text-md" href="perfil.php">Perfil</a>
         </li>
-        <li>
-          <a class="block hover:bg-blue-900 rounded p-2" href="dashboard.php"
+                <li>
+          <a class="block hover:bg-gray-200 rounded p-2 text-blue-950 font-bold text-md" href="dashboard.php"
             >Dashboard</a
           >
         </li>
         <li>
           <a
-            class="block hover:bg-blue-900 rounded p-2"
+            class="block hover:bg-gray-200 rounded p-2 text-blue-950 font-bold text-md"
             href="gerenciador.php"
             >Gerenciador</a
           >
         </li>
         <li>
-          <a class="block hover:bg-red-900 rounded p-2" href="logout.php">Logout</a>
+          <a class="block hover:bg-red-200 rounded p-2 text-blue-950 font-bold text-md" href="logout.php">Logout</a>
         </li>
-   </ul>
+      </ul>
     </section>
 <main class="p-3 ml-32 lg:ml-64 lg:p-6">
                     <!--tabela do estoque-->
