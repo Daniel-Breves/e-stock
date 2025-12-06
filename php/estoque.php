@@ -120,8 +120,8 @@ while ($row = $produtos->fetch_assoc()) {
     </div>
 </div>
 <body class="bg-slate-100 flex flex-col">
-            <header class="ml-64 p-6">
-            <section class="flex flex-row gap-50">
+            <header class="lg:ml-64 lg:p-6 ml-35 p-3">
+            <section class="flex flex-row lg:gap-50 gap-20">
                 <h1 class="text-5xl font-bold text-slate-800 text-shadow-lg"><?php echo htmlspecialchars($estoque['categoria']) ?></h1>
                 <div>
 <button id="btnEditarEstoque" 
@@ -133,27 +133,44 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
                 <button class="bg-red-500 text-white font-bold rounded hover:bg-red-600 ml-3 w-35 h-10">excluir estoque</button>
             </a>
                 </div>
-                <input class="bg-slate-200 shadow-xl outline-1 outline-gray-300 rounded-md w-70 h-10 text-center fixed ml-230" type="search" name="search" id="srch" placeholder="Search:">
             </section>
             </header>
-    <section class="bg-blue-800 w-64 h-screen text-white fixed shadow-lg">
+    <section class="bg-blue-800 lg:w-64 sm:w-16 h-screen text-white fixed shadow-lg">
         <img class="w-30 ml-5" src="../images/logo.png" alt="">
    <p class="text-xl font-bold ml-5 mt-5">Menu</p>
    <ul class="ml-5 mt-10 mr-5 flex flex-col gap-5">
-    <li><a class="block hover:bg-blue-900 rounded p-2" href="#">Configurações</a></li>
-    <li><a class="block hover:bg-blue-900 rounded p-2" href="perfil.php">Perfil</a></li>
-    <li><a class="block hover:bg-blue-900 rounded p-2" href="dashboard.php">Dashboard</a></li>
-    <li><a class="block hover:bg-blue-900 rounded p-2" href="#">Relatorio</a></li>
-    <li><a class="block hover:bg-red-900 rounded p-2" href="#">Logout</a></li>
+        <li>
+          <a class="block hover:bg-blue-900 rounded p-2" href="perfil.php"
+            >Perfil</a
+          >
+        </li>
+        <li>
+          <a class="block hover:bg-blue-900 rounded p-2" href="dashboard.php"
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <a
+            class="block hover:bg-blue-900 rounded p-2"
+            href="gerenciador.php"
+            >Gerenciador</a
+          >
+        </li>
+        <li>
+          <a class="block hover:bg-red-900 rounded p-2" href="logout.php">Logout</a>
+        </li>
    </ul>
     </section>
-    <main class="ml-64 p-6 flex flex-col">
+<main class="p-3 ml-32 lg:ml-64 lg:p-6">
                     <!--tabela do estoque-->
-            <section class="shadow-lg bg-white text-slate-800 rounded-xl p-5 w-210 ml-10">
-                <h1 class="font-bold text-2xl ml-5">
-                    Estoque atual
-                </h1>
-                <table class="w-200 h-25 text-sm ml-5 mt-5">
+ <section class="shadow-lg bg-white text-slate-800 rounded-xl p-5 w-full max-w-7xl mx-auto">
+  <h1 class="font-bold text-2xl">
+    Estoque atual
+  </h1>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-xs lg:text-sm mt-5">
+
                     <thead class="text-left border-b border-slate-700">
                         <tr>
                             <th class="py-2">
@@ -224,30 +241,30 @@ class="bg-blue-500 text-white font-bold rounded hover:bg-blue-600 ml-3 w-35 h-10
                 </table>
             </section>
                         <!--adicionar produto-->
-            <section class="flex flex-col gap-3 bg-white rounded-xl p-6 shadow-md border border-slate-200 w-275 mt-5">
+            <section class="flex flex-col gap-3 bg-white rounded-xl p-6 shadow-md border border-slate-200 lg:w-275 w-105 mt-5">
                 <h1 class="text-xl font-bold text-blue-950 mt-3 ml-3">Adicionar produto</h1>
-                <form class="text-white text-base font-medium flex flex-col gap-8 ml-3" action="create_pr.php" method="post">
+                <form class="text-white text-base font-medium flex flex-col lg:gap-8 sm:gap-4" action="create_pr.php" method="post">
                        <input type="hidden" name="id_estoque" value="<?php echo $id_estoque; ?>">
                        <div class="flex flex-row">
-                        <div class="flex flex-col mr-10">
+                        <div class="flex flex-col mr-2 lg:mr-5">
                      <label class="text-blue-950" for="categoria">nome:</label>
-                     <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 w-125 px-3 text-blue-950" type="text" name="nome" id="" placeholder="name:">
+                     <input class="bg-slate-100 outline-none rounded-lg lg:h-10 sm:h-5 border border-slate-300 lg:w-125 w-45 px-3 text-blue-950" type="text" name="nome" id="" placeholder="name:">
                     </div>
                     <div>
                         <label class="text-blue-950" for="custo">custo:</label>
-                        <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 w-125 px-3 text-blue-950" type="number" name="custo"   step="0.01" min="0" placeholder="0,00">
+                        <input class="bg-slate-100 outline-none rounded-lg lg:h-10 sm:h-5 border border-slate-300 lg:w-125 w-45 px-3 text-blue-950" type="number" name="custo"   step="0.01" min="0" placeholder="0,00">
                     </div>
 
                        </div>
                     
-                <div class="flex flex-row gap-5 mr-10">
+                <div class="flex flex-row lg:gap-5 gap-2 mr-10">
                         <div class="flex flex-col">
                     <label class="text-blue-950" for="preço">Preço:</label>
-                     <input class="bg-slate-100 outline-none rounded-lg h-10 border border-slate-300 w-125 px-3 text-blue-950" type="number" name="prec"  step="0.01" min="0" placeholder="o,oo">
+                     <input class="bg-slate-100 outline-none rounded-lg lg:h-10 sm:h-5 border border-slate-300 lg:w-125 w-45 px-3 text-blue-950" type="number" name="prec"  step="0.01" min="0" placeholder="o,oo">
                         </div>
                                                 <div class="flex flex-col">
                     <label class="text-blue-950" for="quantidade">Quantidade:</label>
-                     <input class="bg-slate-100 outline-none rounded-lg h-10 w-125 border border-slate-300 px-3 text-blue-950" type="number" name="quant" id="" placeholder="0">
+                     <input class="bg-slate-100 outline-none rounded-lg lg:h-10 sm:h-5 border border-slate-300 lg:w-125 w-45 px-3 text-blue-950" type="number" name="quant" id="" placeholder="0">
                         </div>
                 </div>
                     <div>

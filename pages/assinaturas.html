@@ -1,11 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Assinaturas - E-stock</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <h1>assinaturas</h1>
+
+<body class="bg-slate-100">
+
+<!-- NAVBAR -->
+<header class="fixed top-0 right-0 left-0 flex flex-row gap-50 bg-white text-blue-800 text-lg font-medium text-center shadow-xl">
+    <img class="flex mr-15 ml-15 w-30" src="../images/logo.png" alt="logo">
+    <nav class="flex flex-row gap-25 mt-10 mb-10">
+      <a class="hover:text-blue-950 hover:scale-110 transition delay-50" href="login.html">login</a>
+      <a class="hover:text-blue-950 hover:scale-110 transition delay-50" href="cadastro.html">cadastre-se</a>
+      <a class="hover:text-blue-950 hover:scale-110 transition delay-50" href="assinaturas.html">assinaturas</a>
+      <a class="hover:text-blue-950 hover:scale-110 transition delay-50" href="sobre_nos.html">sobre nós</a>
+      <a class="hover:text-green-500 hover:scale-110 transition delay-50" href="https://github.com/Daniel-Breves" target="_blank">desenvolvedor</a>
+    </nav>
+</header>
+
+<!-- CONTEÚDO -->
+<main class="mt-60 mb-40 flex flex-col items-center">
+
+    <h1 class="text-6xl text-blue-900 font-extrabold mb-10">Planos de Assinatura</h1>
+    <p class="text-2xl text-gray-700 mb-20 max-w-3xl text-center">
+        Escolha o plano ideal para o seu negócio e tenha controle profissional do seu estoque.
+    </p>
+
+    <!-- CARDS DOS PLANOS -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-20">
+
+        <!-- PLANO GRÁTIS -->
+        <div class="bg-white shadow-xl rounded-xl p-10 w-96 text-center border-t-8 border-blue-400 hover:scale-105 transition">
+            <h2 class="text-4xl font-bold text-blue-700">Grátis</h2>
+            <p class="text-5xl font-extrabold mt-5">R$ 0</p>
+            <p class="text-gray-600 mt-2">para sempre</p>
+
+            <ul class="text-lg text-gray-700 mt-10 space-y-3">
+                <li>✔ Controle básico de estoque</li>
+                <li>✔ Cadastro de até 30 produtos</li>
+                <li>✔ Relatórios simples</li>
+                <li>✖ Sem suporte prioritário</li>
+            </ul>
+
+            <a href="cadastro.html">
+                <button class="bg-blue-500 mt-10 text-white font-bold w-full py-3 rounded-lg hover:bg-blue-600">
+                    Começar
+                </button>
+            </a>
+        </div>
+
+        <!-- PLANO PROFISSIONAL -->
+        <div class="bg-white shadow-2xl rounded-xl p-10 w-96 text-center border-t-8 border-green-500 hover:scale-110 transition">
+            <h2 class="text-4xl font-bold text-green-700">Profissional</h2>
+            <p class="text-5xl font-extrabold mt-5">R$ 29<span class="text-xl">/mês</span></p>
+
+            <ul class="text-lg text-gray-700 mt-10 space-y-3">
+                <li>✔ Tudo do plano grátis</li>
+                <li>✔ Cadastro ilimitado de produtos</li>
+                <li>✔ Relatórios completos</li>
+                <li>✔ Suporte prioritário</li>
+                <li>✔ Alertas automáticos</li>
+            </ul>
+
+            <a href="cadastro.html">
+                <button class="bg-green-500 mt-10 text-white font-bold w-full py-3 rounded-lg hover:bg-green-600">
+                    Assinar agora
+                </button>
+            </a>
+        </div>
+
+        <!-- PLANO EMPRESARIAL -->
+        <div class="bg-white shadow-xl rounded-xl p-10 w-96 text-center border-t-8 border-purple-500 hover:scale-105 transition">
+            <h2 class="text-4xl font-bold text-purple-700">Empresarial</h2>
+            <p class="text-5xl font-extrabold mt-5">R$ 59<span class="text-xl">/mês</span></p>
+
+            <ul class="text-lg text-gray-700 mt-10 space-y-3">
+                <li>✔ Todas as funções profissionais</li>
+                <li>✔ Multiusuários</li>
+                <li>✔ Integração com sistemas externos</li>
+                <li>✔ Relatórios avançados</li>
+                <li>✔ Consultoria personalizada</li>
+            </ul>
+
+            <a href="cadastro.html">
+                <button class="bg-purple-500 mt-10 text-white font-bold w-full py-3 rounded-lg hover:bg-purple-600">
+                    Assinar agora
+                </button>
+            </a>
+        </div>
+
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-blue-500 mt-20">
+    <h1 class="text-white font-base text-xs text-center"> &copy;- E-stock. Todos os direitos reservados</h1>
+    <section class="flex flex-row text-white font-medium text-lg gap-10 justify-center">
+        <div class="flex flex-col mt-10 mb-10">
+            <a href="sobre_nos.html">sobre nós</a>
+            <a href="https://github.com/Daniel-Breves" target="_blank">desenvolvedor</a>
+            <a href="assinaturas.html">assinaturas</a>
+        </div>
+        <div class="flex flex-col mt-10 mb-10 border-l border-white pl-10">
+            <a href="#">instagram</a>
+            <a href="#">youtube</a>
+            <a href="#">contato</a>
+        </div>
+    </section>
+</footer>
+
 </body>
 </html>

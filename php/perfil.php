@@ -28,8 +28,8 @@ $usuario = $resultado->fetch_assoc();
       <p class="text-xl font-bold ml-5 mt-5">Menu</p>
       <ul class="ml-5 mt-10 mr-5 flex flex-col gap-5">
         <li>
-          <a class="block hover:bg-blue-900 rounded p-2" href="#"
-            >Configurações</a
+          <a class="block hover:bg-blue-900 rounded p-2" href="perfil.php"
+            >Perfil</a
           >
         </li>
         <li>
@@ -43,9 +43,6 @@ $usuario = $resultado->fetch_assoc();
             href="gerenciador.php"
             >Gerenciador</a
           >
-        </li>
-        <li>
-          <a class="block hover:bg-blue-900 rounded p-2" href="#">Relatorio</a>
         </li>
         <li>
           <a class="block hover:bg-red-900 rounded p-2" href="logout.php">Logout</a>

@@ -1,11 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre nós - E-Stock</title>
+
+  <!-- Tailwind (mesmo link que você usa) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    sobre nós
+
+<body class="bg-slate-100 text-slate-800 flex flex-col">
+
+  <!-- HEADER / NAV -->
+  <header class="fixed top-0 right-0 left-0 flex flex-row gap-50 bg-white text-blue-800 text-lg font-medium text-center shadow-xl">
+    <img class="flex mr-15 ml-15 w-30" src="../images/logo.png" alt="logo">
+    <nav class="flex flex-row gap-25 mt-10 mb-10">
+      <a class="hover:text-blue-950 hover:scale-110 transition delay-50" href="pages/login.html">login</a>
+      <a class="hover:text-blue-950 hover:scale-110 transition delay-50" href="pages/cadastro.html">cadastre-se</a>
+      <a class="hover:text-blue-950 hover:scale-110 transition delay-50" href="assinaturas.html">assinaturas</a>
+      <a class="hover:text-blue-950 hover:scale-110 transition delay-50" href="pages/sobre_nos.html">sobre nós</a>
+      <a class="hover:text-green-500 hover:scale-110 transition delay-50" href="https://github.com/Daniel-Breves" target="_blank">desenvolvedor</a>
+    </nav>
+
+  </header>
+
+  <!-- MISSAO / APRESENTAÇÃO -->
+  <section class="max-w-5xl mt-40 ml-65 mr-65 px-4 py-10">
+
+    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-center text-blue-800">
+      Sobre o E-Stock
+    </h2>
+
+    <p class="text-center max-w-3xl mx-auto text-slate-600 mb-10 text-blue-950">
+      O E-Stock é uma plataforma moderna de controle de estoque e gestão financeira,
+      desenvolvida para ajudar empresas a manterem seus produtos organizados, reduzir
+      desperdícios e aumentar a lucratividade.
+    </p>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="bg-white rounded-xl shadow p-6 text-center">
+        <h3 class="font-bold text-lg mb-2 text-blue-900">
+          📦 Controle de Estoque
+        </h3>
+        <p class="text-blue-950 text-sm">
+          Monitore entradas, saídas e promoções em tempo real, evitando perdas.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6 text-center">
+        <h3 class="font-bold text-lg mb-2 text-blue-900">
+          💰 Financeiro Integrado
+        </h3>
+        <p class="text-blue-950 text-sm">
+          Calcule automaticamente faturamento, gastos e lucro de forma simples.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6 text-center">
+        <h3 class="font-bold text-lg mb-2 text-blue-900">
+          📊 Relatórios em PDF
+        </h3>
+        <p class="text-blue-950 text-sm">
+          Gere relatórios profissionais prontos para impressão e análise.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OBJETIVO -->
+  <section class="bg-white py-12 px-4">
+
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-4 text-blue-800">Nosso objetivo</h2>
+      <p class="text-blue-950 leading-relaxed">
+        Nosso objetivo é transformar pequenos e médios negócios em empresas
+        mais organizadas, estratégicas e lucrativas por meio de tecnologia
+        simples, acessível e eficiente.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- QUEM DESENVOLVEU -->
+  <section class="max-w-4xl mx-auto px-4 py-12 text-center">
+
+    <h2 class="text-2xl font-bold mb-4 text-blue-800">Quem desenvolveu</h2>
+
+    <div class="bg-blue-600 text-white rounded-xl p-6 mt-4 shadow-lg">
+
+      <h3 class="text-lg font-semibold">Daniel Breves Nunes</h3>
+
+      <p class="text-sm text-slate-300 mt-2">
+        Desenvolvedor Full Stack em formação, focado em criar soluções modernas para
+        gestão empresarial.
+      </p>
+
+      <div class="mt-4 flex justify-center gap-4 text-sm">
+        <span class="bg-blue-800 px-3 py-1 rounded-full">PHP</span>
+        <span class="bg-blue-800 px-3 py-1 rounded-full">MySQL</span>
+        <span class="bg-blue-800 px-3 py-1 rounded-full">Tailwind</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-blue-500">
+    <h1 class="text-white font-base text-xs text-center"> &copy;- E-stock. Todos os direitos reservados</h1>
+    <section class="flex flex-row text-white font-medium text-lg gap-10 justify-center">
+    <div class="flex flex-col mt-10 mb-10">
+      <a href="pages/sobre_nos.html">sobre nós</a>
+      <a href="https://github.com/Daniel-Breves" target="_blank">desenvolvedor</a>
+      <a href="pages/assinaturas.html">assinaturas</a>
+    </div>
+    <div class="flex flex-col mt-10 mb-10 border-l border-white pl-10">
+      <a href="#">instagram</a>
+      <a href="#">youtube</a>
+      <a href="#">contato</a>
+    </div>
+    </section>
+  </footer>
+
 </body>
 </html>
